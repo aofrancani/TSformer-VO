@@ -3,14 +3,12 @@
 [![arXiv](https://img.shields.io/badge/cs.CV-arXiv%3A2305.06121-B31B1B.svg)](https://arxiv.org/abs/2305.06121)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/aofrancani/TSformer-VO/blob/main/LICENSE)
 
-Code of the paper "[Transformer-based model for monocular visual odometry: a video understanding approach](https://arxiv.org/abs/2305.06121)"
-
-<img src="tsformer-vo.jpg" width=600>
-
+Official repository of "[Transformer-based model for monocular visual odometry: a video understanding approach](https://arxiv.org/abs/2305.06121)"
 
 ## Abstract
 *Estimating the camera pose given images of a single camera is a traditional task in mobile robots and autonomous vehicles. This problem is called monocular visual odometry and it often relies on geometric approaches that require engineering effort for a specific scenario. Deep learning methods have shown to be generalizable after proper training and a considerable amount of available data. Transformer-based architectures have dominated the state-of-the-art in natural language processing and computer vision tasks, such as image and video understanding. In this work, we deal with the monocular visual odometry as a video understanding task to estimate the 6-DoF camera's pose. We contribute by presenting the TSformer-VO model based on spatio-temporal self-attention mechanisms to extract features from clips and estimate the motions in an end-to-end manner. Our approach achieved competitive state-of-the-art performance compared with geometry-based and deep learning-based methods on the KITTI visual odometry dataset, outperforming the DeepVO implementation highly accepted in the visual odometry community.*
 
+<img src="tsformer-vo.jpg" width=1000>
 
 ## Contents
 1. [Dataset](#1-dataset)
@@ -58,7 +56,13 @@ The data structure should be as follows:
 
 ## 2. Pre-trained models
 
+Here you find the checkpoints of our trained-models. The architectures vary according to the number of frames (Nf) in the input clip, which also influences the last MLP head.
 
+| Model | Nf | Checkpoint |
+| --- | --- | --- |
+| TSformer-VO-1 | 2 | [checkpoint_model1](https://drive.google.com/file/d/1p9tgK9hTwgC6-xRDtLecNJ8VYH0l5_aa/view?usp=sharing) |
+| TSformer-VO-2 | 3 | [checkpoint_model2](https://drive.google.com/file/d/1ZnPvEf-fGpRoFcywaH2JVmaHjLgRa8Ez/view?usp=share_link) |
+| TSformer-VO-3 | 4 | [checkpoint_model3](https://drive.google.com/file/d/1lYvLEXN5zWQy1dW5p6hEXdEOVH58JcoD/view?usp=sharing) |
 
 ## 3. Setup
 - Create a virtual environment using Anaconda and activate it:
@@ -73,10 +77,33 @@ pip install -r requirements.txt
 
 ## 4. Usage
 
+*PS*: So far we are changing the settings and hyperparameters directly in the variables and dictionaries. As further work, we will use pre-set configurations with the `argparse` module to make a user-friendly interface.
+
+### 4.1. Training
+
+In `train.py`:
+- Manually set configuration in `args` (python dict);
+- Manually set the model hyperparameters in `model_params` (python dict);
+- Save and run the code `train.py`.
+
+### 4.2. Inference
+
+In `predict_poses.py`:
+- Manually set the variables to read the checkpoint and sequences.
+
+| **Variables**   | **Info**                                                                                                             |
+|-----------------|----------------------------------------------------------------------------------------------------------------------|
+| checkpoint_path | String with the path to the trained model you want to use for inference.  Ex: checkpoint_path = "checkpoints/Model1" |
+| checkpoint_name | String with the name of the desired checkpoint (name of the .pth file).  Ex: checkpoint_name = "checkpoint_model2_exp19" |
+| sequences       | List with strings representing the KITTI sequences.  Ex: sequences = ["03", "04", "10"]                              |
+
+### 4.3. Visualize Trajectories
+In `plot_results.py`:
+- Manually set the variables to the checkpoint and desired sequences, similarly to [Inference](#4.1-inference)
 
 
 ## 5. Evaluation
-The evalutaion is done with the [KITTI odometry evaluation toolbox](https://github.com/Huangying-Zhan/kitti-odom-eval). Please go to the [evaluation repository](https://github.com/Huangying-Zhan/kitti-odom-eval) to see more details about the evaluation metrics and how to run the toolbox.
+The evaluation is done with the [KITTI odometry evaluation toolbox](https://github.com/Huangying-Zhan/kitti-odom-eval). Please go to the [evaluation repository](https://github.com/Huangying-Zhan/kitti-odom-eval) to see more details about the evaluation metrics and how to run the toolbox.
 
 
 ## Citation
@@ -92,6 +119,9 @@ Please cite our paper you find this research useful in your work:
 ```
 
 ## References
-Code adapted from [TimeSformer](https://github.com/facebookresearch/TimeSformer). Check out our previous work on monocular visual odometry: [DPT-VO](https://github.com/aofrancani/DPT-VO)
+
+Code adapted from [TimeSformer](https://github.com/facebookresearch/TimeSformer). 
+
+Check out our previous work on monocular visual odometry: [DPT-VO](https://github.com/aofrancani/DPT-VO)
 
  
