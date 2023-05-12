@@ -58,11 +58,13 @@ The data structure should be as follows:
 
 Here you find the checkpoints of our trained-models. The architectures vary according to the number of frames (Nf) in the input clip, which also influences the last MLP head.
 
-| Model | Nf | Checkpoint |
-| --- | --- | --- |
-| TSformer-VO-1 | 2 | [checkpoint_model1](https://drive.google.com/file/d/1p9tgK9hTwgC6-xRDtLecNJ8VYH0l5_aa/view?usp=sharing) |
-| TSformer-VO-2 | 3 | [checkpoint_model2](https://drive.google.com/file/d/1ZnPvEf-fGpRoFcywaH2JVmaHjLgRa8Ez/view?usp=share_link) |
-| TSformer-VO-3 | 4 | [checkpoint_model3](https://drive.google.com/file/d/1lYvLEXN5zWQy1dW5p6hEXdEOVH58JcoD/view?usp=sharing) |
+**Google Drive folder**: [link to checkpoints in GDrive](https://drive.google.com/drive/folders/124Z8aCPtPVH4bsUR78NYaK4m6SLna2Kf?usp=share_link)
+
+| Model | Nf | Checkpoint (.pth) | Args (Model Parameters)|
+| --- | --- | --- | --- |
+| TSformer-VO-1 | 2 | [checkpoint_model1](https://drive.google.com/file/d/1p9tgK9hTwgC6-xRDtLecNJ8VYH0l5_aa/view?usp=sharing) | [args.pkl](https://drive.google.com/file/d/1qmD6pAmjYRqKNMs_3VQliFdqKjsN0YW9/view?usp=sharing) |
+| TSformer-VO-2 | 3 | [checkpoint_model2](https://drive.google.com/file/d/1ZnPvEf-fGpRoFcywaH2JVmaHjLgRa8Ez/view?usp=share_link) | [args.pkl](https://drive.google.com/file/d/1Ua-mCTYPzUoiyS5jadfm7TGz6zGKBevy/view?usp=share_link) |
+| TSformer-VO-3 | 4 | [checkpoint_model3](https://drive.google.com/file/d/1lYvLEXN5zWQy1dW5p6hEXdEOVH58JcoD/view?usp=sharing) | [args.pkl](https://drive.google.com/file/d/1kp-0R7v2pVRTNpxFXPG7DgBHLr7M2ct-/view?usp=share_link) |
 
 ## 3. Setup
 - Create a virtual environment using Anaconda and activate it:
@@ -77,7 +79,7 @@ pip install -r requirements.txt
 
 ## 4. Usage
 
-*PS*: So far we are changing the settings and hyperparameters directly in the variables and dictionaries. As further work, we will use pre-set configurations with the `argparse` module to make a user-friendly interface.
+**PS**: So far we are changing the settings and hyperparameters directly in the variables and dictionaries. As further work, we will use pre-set configurations with the `argparse` module to make a user-friendly interface.
 
 ### 4.1. Training
 
@@ -99,7 +101,7 @@ In `predict_poses.py`:
 
 ### 4.3. Visualize Trajectories
 In `plot_results.py`:
-- Manually set the variables to the checkpoint and desired sequences, similarly to [Inference](#4.1-inference)
+- Manually set the variables to the checkpoint and desired sequences, similarly to [Inference](#42-inference)
 
 
 ## 5. Evaluation
