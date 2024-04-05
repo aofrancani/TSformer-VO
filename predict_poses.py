@@ -82,10 +82,10 @@ for sequence in sequences:
             pred_pose = pred_pose.unsqueeze(dim=0)
             pred_poses = torch.concat((pred_poses, pred_pose), dim=0)
     
-# save as numpy array
-pred_poses = pred_poses[1:, :, :].cpu().detach().numpy()
+    # save as numpy array
+    pred_poses = pred_poses[1:, :, :].cpu().detach().numpy()
 
-save_dir = os.path.join(args["checkpoint_path"], checkpoint_name)
-if not os.path.exists(save_dir):
-    os.makedirs(save_dir)
-np.save(os.path.join(save_dir, "pred_poses_{}.npy".format(sequence)), pred_poses)
+    save_dir = os.path.join(args["checkpoint_path"], checkpoint_name)
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+    np.save(os.path.join(save_dir, "pred_poses_{}.npy".format(sequence)), pred_poses)
